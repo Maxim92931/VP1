@@ -62,4 +62,14 @@
         "<p>DarkBeefBurger за 500 рублей, 1 шт</p><hr><p>$orderCount</p>";
 
 
-    Mail::sendMail($email, "Бургеры", $message);
+    $resultSendMail = Mail::sendMail($email, "Бургеры", $message);
+
+    $loader = new Twig_Loader_Filesystem('../templates');
+    $twig = new Twig_Environment($loader, array(
+        'cache' => false
+    ));
+
+    $data['resultSendMessage'] = $resultSendMail;
+    $data['message'] = ', Ваш заказ выполнен';
+
+    echo $twig->render('result.html', $data);

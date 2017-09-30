@@ -1,6 +1,7 @@
 {
     "require": {
         "phpmailer/phpmailer": "dev-5.2-stable",
-        "google/recaptcha": "^1.1"
+        "google/recaptcha": "^1.1",
+        "twig/twig": "^2.4"
     }
 }
