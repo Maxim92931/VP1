@@ -1,6 +1,8 @@
 <?php
     require_once "../conf.php";
     require_once "bd.php";
+    require_once "Mail.php";
+
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 
@@ -48,10 +50,5 @@
     $message = "<h1>Заказ №$orderId<h2><p>Ваш заказ будет доставлен по адресу: $address</p>" .
         "<p>DarkBeefBurger за 500 рублей, 1 шт</p><hr><p>$orderCount</p>";
 
-    echo $message;
-    mail(
-        $email,
-        'Бургеры',
-        $message
-    );
 
+    Mail::sendMail($email, "Бургеры", $message);
