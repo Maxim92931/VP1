@@ -1,0 +1,6 @@
+{
+    "require": {
+        "phpmailer/phpmailer": "dev-5.2-stable",
+        "google/recaptcha": "^1.1"
+    }
+}
