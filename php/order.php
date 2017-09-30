@@ -2,9 +2,20 @@
     require_once "../conf.php";
     require_once "bd.php";
     require_once "Mail.php";
+    require '../vendor/autoload.php';
 
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
+
+    $remoteIp = $_SERVER['REMOTE_ADDR'];
+    $recaptchaResponce = $_REQUEST['g-recaptcha-response'];
+    $recaptcha = new \ReCaptcha\ReCaptcha("6LesqjIUAAAAAIwNr5HCGYQTBvWcWxksNRMml9QE");
+    $result = $recaptcha->verify($recaptchaResponce, $remoteIp);
+
+    if (!$result->isSuccess()) {
+        echo 'Капча не пройдена';
+        die();
+    }
 
     try {
         $connection = new PDO("$host;dbname=$dbname;charset=$charset", $user, $pass);
